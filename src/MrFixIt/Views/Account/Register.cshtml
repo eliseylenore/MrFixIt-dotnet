@@ -10,14 +10,18 @@
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    @Html.LabelFor(m => m.Email)
-    @Html.TextBoxFor(m => m.Email)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
     //need to specify password reqs
-    @Html.LabelFor(m => m.Password)
-    @Html.PasswordFor(m => m.Password)
-
-    @Html.LabelFor(m => m.ConfirmPassword)
-    @Html.PasswordFor(m => m.ConfirmPassword)
-
-    <input type="submit" value="Register" />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+    </div>
+    <input type="submit" value="Register" class="btn btn-success"/>
 }
