@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MrFixIt.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,9 +44,12 @@ namespace MrFixIt.Controllers
         [HttpPost]
         public IActionResult Claim(Job job)
         {
+            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == job.JobId);
             //action starts the process of editing the job status, but needs to actually change pending boolean to true based on AJAX
-            job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
-            db.Entry(job).State = EntityState.Modified;
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            thisJob.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            thisJob.Pending = true;
+            db.Entry(thisJob).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
