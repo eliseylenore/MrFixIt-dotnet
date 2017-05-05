@@ -13,9 +13,10 @@ namespace MrFixIt.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public bool Completed { get; set; }
+        //pending = someone has claimed the job
         public bool Pending { get; set; }
         //one-or-zero:many relationship, Job only has one worker.
-        //add active status?
+        //add active status = your job is underway(not just in the queue)
         public virtual Worker Worker { get; set; }
         //method below finds a random worker by UserName, how is it related to the Job?
         public Worker FindWorker(string UserName)
