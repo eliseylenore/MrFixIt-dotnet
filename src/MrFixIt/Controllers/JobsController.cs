@@ -42,11 +42,10 @@ namespace MrFixIt.Controllers
         }
 
         [HttpPost]
-        public IActionResult Claim(Job job)
+        public IActionResult SubmitClaim(int JobId)
         {
-            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == job.JobId);
             //action starts the process of editing the job status, but needs to actually change pending boolean to true based on AJAX
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == JobId);
             thisJob.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
             thisJob.Pending = true;
             db.Entry(thisJob).State = EntityState.Modified;
