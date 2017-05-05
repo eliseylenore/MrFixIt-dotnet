@@ -16,8 +16,8 @@ namespace MrFixIt.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         
-        //mispelled property
-        public bool Avaliable { get; set; }
+        //mispelled property - fixed
+        public bool Available { get; set; }
         public string UserName { get; set; }
         //this comes from Identity.User
         //one-or-zero:many relationship, one worker has many jobs
