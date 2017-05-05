@@ -7,28 +7,38 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-
     <div class="text-center">
         <h4>Hello Worker @Model.FirstName @Model.LastName. You are Logged In</h4>
         <h3>Your Current Jobs:</h3>
         @foreach (var Job in Model.Jobs)
         {
-            <h5>@Job.Title @Job.JobId</h5>
-            @if (!Job.IsActive)
+            @if (!Job.Completed)
             {
-                <button class="mark-active btn btn-success" action="MarkActive" data-request-url="/Jobs/MarkActive/@Job.JobId">
-                    Mark Active
-                </button>
+                <h5>@Job.Title @Job.JobId</h5>
+                @if (!Job.IsActive)
+                {
+                    <button class="mark-active btn btn-success" action="MarkActive" data-request-url="/Jobs/MarkActive/@Job.JobId">
+                        Mark Active
+                    </button>
+                }
+                else if (Job.IsActive)
+                {
+                    <button class="mark-complete btn btn-success" action="MarkComplete" data-request-url="/Jobs/MarkComplete/@Job.JobId">
+                        Mark Complete
+                    </button>
+                }
             }
-            else if (Job.IsActive)
-            {
-                <button class="mark-active btn btn-success" action="MarkActive" data-request-url="@Url.Action("MarkActive", "Jobs", new { id = Job.JobId, @class="btn btn-warning" })">
-                    Mark Complete
-                </button>
-            }
-
-
         }
+
+        <h3>Your Completed Jobs:</h3>
+        @foreach (var Job in Model.Jobs)
+        {
+            @if (Job.Completed)
+            {
+                <h5>@Job.Title @Job.JobId</h5>
+            }
+        }
+
         @if (Model.Available)
         {
             <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
