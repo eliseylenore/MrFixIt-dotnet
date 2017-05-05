@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="text-center">
+        <h4>Hello Worker @Model.FirstName @Model.LastName. You are Logged In</h4>
+        <h3>Your Current Jobs:</h3>
+        @foreach (var Job in Model.Jobs)
+        {
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    @if (!Job.Completed)
+                    {
+                        <h5>@Job.Title @Job.JobId</h5>
+                        @if (!Job.IsActive)
+                        {
+                            <button class="mark-active btn btn-success" action="MarkActive" data-request-url="/Jobs/MarkActive/@Job.JobId">
+                                Mark Active
+                            </button>
+                        }
+                        else if (Job.IsActive)
+                        {
+                            <button class="mark-complete btn btn-success" action="MarkComplete" data-request-url="/Jobs/MarkComplete/@Job.JobId">
+                                Mark Complete
+                            </button>
+                        }
+                    }
+                </div>
+            </div>
+        }
+
+                <h3>Your Completed Jobs:</h3>
+                @foreach (var Job in Model.Jobs)
+                {
+                    <div class="panel">
+                        @if (Job.Completed)
+                        {
+                            <h5>@Job.Title @Job.JobId</h5>
+                        }
+                    </div>
+                }
+
+                @if (Model.Available)
+                {
+                    <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
+                }
+                else
+                {
+                    <p>You are already assigned to a job.</p>
+                }
+            </div>
+        }

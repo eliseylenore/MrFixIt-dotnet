@@ -9,43 +9,65 @@
 {
     <div class="text-center">
         <h4>Hello Worker @Model.FirstName @Model.LastName. You are Logged In</h4>
-        <h3>Your Current Jobs:</h3>
-        @foreach (var Job in Model.Jobs)
-        {
-            @if (!Job.Completed)
+        <div class="row">
+            <h3>Your Current Jobs:</h3>
+            @foreach (var Job in Model.Jobs)
             {
-                <h5>@Job.Title @Job.JobId</h5>
-                @if (!Job.IsActive)
-                {
-                    <button class="mark-active btn btn-success" action="MarkActive" data-request-url="/Jobs/MarkActive/@Job.JobId">
-                        Mark Active
-                    </button>
-                }
-                else if (Job.IsActive)
-                {
-                    <button class="mark-complete btn btn-success" action="MarkComplete" data-request-url="/Jobs/MarkComplete/@Job.JobId">
-                        Mark Complete
-                    </button>
-                }
-            }
-        }
 
-        <h3>Your Completed Jobs:</h3>
-        @foreach (var Job in Model.Jobs)
-        {
-            @if (Job.Completed)
+                @if (!Job.Completed)
+                {
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h5>@Job.Title @Job.JobId</h5>
+                                @if (!Job.IsActive)
+                        {
+                                    <button class="mark-active btn btn-success" action="MarkActive" data-request-url="/Jobs/MarkActive/@Job.JobId">
+                                        Mark Active
+                                    </button>
+
+                                }
+                                else if (Job.IsActive)
+                                {
+                                    <button class="mark-complete btn btn-success" action="MarkComplete" data-request-url="/Jobs/MarkComplete/@Job.JobId">
+                                        Mark Complete
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+        <div class="row">
+            <h3>Your Completed Jobs:</h3>
+
+            @foreach (var Job in Model.Jobs)
             {
-                <h5>@Job.Title @Job.JobId</h5>
-            }
-        }
 
-        @if (Model.Available)
-        {
-            <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
-        }
-        else
-        {
-            <p>You are already assigned to a job.</p>
-        }
+                @if (Job.Completed)
+                    {
+                    <div class="col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h5>@Job.Title @Job.JobId</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+
+            @if (Model.Available)
+                {
+                <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
+            }
+            else
+            {
+                <p>You are already assigned to a job.</p>
+            }
+        
     </div>
 }
