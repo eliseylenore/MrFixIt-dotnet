@@ -15,13 +15,18 @@ namespace MrFixIt.Models
         public int WorkerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        
+        //mispelled property
         public bool Avaliable { get; set; }
         public string UserName { get; set; }
         //this comes from Identity.User
+        //one-or-zero:many relationship, one worker has many jobs
         public virtual ICollection<Job> Jobs { get; set; }
-
+        //need a ActiveJob property, if not available
+        //once the ActiveJob is maked complete, add to jobs and delete as ActiveJob
         public Worker()
         {
+            //is automatically available :)
             Avaliable = true;
         }
 

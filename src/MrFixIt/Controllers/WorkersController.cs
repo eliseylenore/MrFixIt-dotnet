@@ -41,5 +41,7 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //Possible action for marking as available/not available?
     }
 }

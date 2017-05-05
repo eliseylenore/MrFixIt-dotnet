@@ -14,6 +14,7 @@
         {
             @Html.LabelFor(model => model.Title)
             @Html.TextBoxFor(model => model.Title, new { @required = "true" })
+            //description should be text area
             @Html.LabelFor(model => model.Description)
             @Html.TextBoxFor(model => model.Description, new { @required = "true" })
             <input type="submit" value="Add new job" />
