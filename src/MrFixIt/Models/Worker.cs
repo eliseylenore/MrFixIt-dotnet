@@ -22,8 +22,6 @@ namespace MrFixIt.Models
         public string UserName { get; set; }
         //this comes from Identity.User
         //one-or-zero:many relationship, one worker has many jobs
-        [ForeignKey("ActiveJob")]
-        public virtual Job ActiveJob { get; set; }
         public virtual ICollection<Job> Jobs { get; set; }
         //need a ActiveJob property, if not available
         //once the ActiveJob is maked complete, add to jobs and delete as ActiveJob

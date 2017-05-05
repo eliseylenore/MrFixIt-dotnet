@@ -52,5 +52,28 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult MarkActive(int JobId)
+        {
+            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == JobId);
+            thisJob.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            var jobList = db.Jobs;
+            foreach(var job in jobList)
+            {
+                if(job == thisJob)
+                {
+                    job.IsActive = true;
+                }
+                else
+                {
+                    job.IsActive = false;
+                }
+            }
+            
+            db.Entry(thisJob).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

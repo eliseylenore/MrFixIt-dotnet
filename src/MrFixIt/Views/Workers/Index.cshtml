@@ -13,7 +13,20 @@
         <h3>Your Current Jobs:</h3>
         @foreach (var Job in Model.Jobs)
         {
-            <h5>@Job.Title</h5>
+            <h5>@Job.Title @Job.JobId</h5>
+            @if (!Job.IsActive)
+            {
+                <button class="mark-active" action="MarkActive" data-request-url="@Url.Action("MarkActive", "Jobs", new { id = @Job.JobId })">
+                    Mark Active
+                </button>
+            }
+            else if (Job.IsActive)
+            {
+                <button class="mark-active" action="MarkActive" data-request-url="@Url.Action("MarkActive", "Jobs", new { id = @Job.JobId })">
+                    Mark Active
+                </button>
+            }
+
 
         }
         @if (Model.Available)

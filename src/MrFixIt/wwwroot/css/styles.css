@@ -1,4 +1,23 @@
-﻿body {
-    padding-top: 70px;
-    color: navy;
+﻿/********** Nav **********/
+.navbar-inverse {
+    border-radius: 0;
+    padding: 10px;
+      top:0px;
+      left:0px;
+      width:100%;
+      border-color: #29a036;
+      background: #29a036;
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand a:hover, .navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-inverse .navbar-brand {
+    font-size: 30px;
+    color: white;
+    font-family: 'Archivo Black', sans-serif;
+}
+.navbar-default {
+    margin-top: 71px;
 }
