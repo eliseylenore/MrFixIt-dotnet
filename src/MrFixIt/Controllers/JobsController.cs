@@ -54,9 +54,9 @@ namespace MrFixIt.Controllers
         }
 
         [HttpPost]
-        public IActionResult MarkActive(int JobId)
+        public IActionResult MarkActive(int id)
         {
-            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == JobId);
+            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
             thisJob.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
             var jobList = db.Jobs;
             foreach(var job in jobList)

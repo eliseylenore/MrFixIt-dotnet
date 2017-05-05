@@ -16,14 +16,14 @@
             <h5>@Job.Title @Job.JobId</h5>
             @if (!Job.IsActive)
             {
-                <button class="mark-active" action="MarkActive" data-request-url="@Url.Action("MarkActive", "Jobs", new { id = @Job.JobId })">
+                <button class="mark-active btn btn-success" action="MarkActive" data-request-url="/Jobs/MarkActive/@Job.JobId">
                     Mark Active
                 </button>
             }
             else if (Job.IsActive)
             {
-                <button class="mark-active" action="MarkActive" data-request-url="@Url.Action("MarkActive", "Jobs", new { id = @Job.JobId })">
-                    Mark Active
+                <button class="mark-active btn btn-success" action="MarkActive" data-request-url="@Url.Action("MarkActive", "Jobs", new { id = Job.JobId, @class="btn btn-warning" })">
+                    Mark Complete
                 </button>
             }
 
