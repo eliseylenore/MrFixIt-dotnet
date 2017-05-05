@@ -1,1 +1,3 @@
-﻿var test = "it works";
+﻿$(document).ready(function () {
+    console.log("Does it work?");
+});

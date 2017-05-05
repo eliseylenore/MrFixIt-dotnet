@@ -27,7 +27,7 @@ namespace MrFixIt.Models
         public Worker()
         {
             //is automatically available :)
-            Avaliable = true;
+            Available = true;
         }
 
     }
