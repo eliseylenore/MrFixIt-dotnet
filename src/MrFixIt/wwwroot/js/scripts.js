@@ -8,8 +8,8 @@
             type: 'POST',
             dataType: 'json',
             data: $(this).serialize(),
-            success: function (result) {
-                console.log("success!")
+            complete: function (result) {
+                $(location).attr("href", "/Workers");
             }
         })
     });
